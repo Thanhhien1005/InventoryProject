@@ -29,5 +29,26 @@ Dự án này tập trung vào xây dựng một kho dữ liệu (Data Warehouse
 - File SSAS (Analysis Services)
 - Tệp Excel SSAS (ssas.xlsx)
 - Tệp Power BI (ssas.pbix)
+# Kết quả và Giải pháp cho Business Process
 
-Nếu có bất kỳ thắc mắc hoặc yêu cầu nào, đừng ngần ngại liên hệ!
+Câu hỏi: Số lượng các sản phẩm bán ra trong tháng/ quý/ năm.
+
+### Sử dụng công cụ SSAS
+- Kết quả: Hiển thị số lượng các mặt hàng, sản phẩm bán được theo thời gian.
+- Giải pháp: Sử dụng SSAS để tạo cube phân tích dựa trên dữ liệu bán hàng, từ đó có thể truy vấn và hiển thị số lượng sản phẩm bán ra theo tháng, quý, hoặc năm.
+![image](https://github.com/Thanhhien1005/InventoryProject/assets/170362430/042c4d3b-9b66-4bd7-b460-68734c228394)
+![image](https://github.com/Thanhhien1005/InventoryProject/assets/170362430/95baac72-5471-4f1b-8884-cd1c298bafd7)
+
+
+### Sử dụng Pivot Table trong Excel
+- Kết quả: Hiển thị theo thời gian năm/ quý/ tháng.
+- Giải pháp: Sử dụng Pivot Table trong Excel để tạo bảng tổng hợp dữ liệu bán hàng và hiển thị số lượng sản phẩm bán ra theo tháng, quý, hoặc năm.
+![image](https://github.com/Thanhhien1005/InventoryProject/assets/170362430/b6a19390-595e-4746-a92e-01a10bf3145b)
+
+### Sử dụng Power BI
+- Kết quả: Biểu đồ thể hiện top 10 sản phẩm có số lượng được bán ra nhiều nhất và được lọc theo danh mục sản phẩm và theo thời gian (Năm, quý, tháng, ngày).
+- Giải pháp: Sử dụng Power BI để kết nối và trực quan hóa dữ liệu từ cube SSAS, từ đó tạo biểu đồ và báo cáo hiển thị số lượng sản phẩm bán ra theo thời gian và danh mục sản phẩm.
+![image](https://github.com/Thanhhien1005/InventoryProject/assets/170362430/77b5a31e-2d0e-4217-82c8-1c66de45a2d4)
+
+
+
