@@ -1,0 +1,2227 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="5/18/2024 7:03:04 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="LAPTOP-HMMP8PH7"
+  DTS:CreatorName="LAPTOP-HMMP8PH7\admin"
+  DTS:DTSID="{7331E06B-F6A7-4EF2-BD16-196ACD26EEBD}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5556.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="StageFact"
+  DTS:PackageType="5"
+  DTS:VersionBuild="96"
+  DTS:VersionGUID="{DB6CE2A4-E6BA-497D-8EB0-297760070AB8}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\DF - Load to InventoryFact"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{528EB7B3-788A-47BF-8510-264FAE8546F0}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="DF - Load to InventoryFact"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\DF - Load to InventoryFact\Aggregate"
+              componentClassID="Microsoft.Aggregate"
+              contactInfo="Aggregate;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;3"
+              description="Aggregates data with functions such as Average, Sum, Count, Max, and Min. For example, group data to compute the sum of sales per product or the average visits per day."
+              name="Aggregate"
+              version="3">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the approximate number of group by keys that the aggregation produces. Low indicates 500,000 key values, Medium indicates 5 million key values, and High indicates more than 25 million key values. Unspecified indicates no KeyScale value is used."
+                  name="KeyScale"
+                  typeConverter="KeyScaleType">0</property>
+                <property
+                  dataType="System.Null"
+                  description="Specifies the exact number of group by keys that the aggregation produces. If a KeyScale value is specified, the value in Keys takes precedence."
+                  name="Keys" />
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the approximate number of distinct values in a column that the aggregation counts distinctly. Low indicates 500,000 key values, Medium indicates 5 million key values, and High indicates more than 25 million key values. Unspecified indicates no CountDistinctScale value is used."
+                  name="CountDistinctScale"
+                  typeConverter="KeyScaleType">0</property>
+                <property
+                  dataType="System.Null"
+                  description="Specifies the exact number of distinct values in a column that the aggregation counts distinctly. If a CountDistinctScale value is specified, the value in CountDistinctKeys takes precedence."
+                  name="CountDistinctKeys" />
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage by which memory can be extended during the aggregation. Valid values are between 1 and 100."
+                  name="AutoExtendFactor">25</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\DF - Load to InventoryFact\Aggregate.Inputs[Aggregate Input 1]"
+                  name="Aggregate Input 1">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DF - Load to InventoryFact\Aggregate.Inputs[Aggregate Input 1].Columns[OrderDateKey]"
+                      cachedDataType="i4"
+                      cachedName="OrderDateKey"
+                      lineageId="Package\DF - Load to InventoryFact\Derived Column.Outputs[Derived Column Output].Columns[OrderDateKey]" />
+                    <inputColumn
+                      refId="Package\DF - Load to InventoryFact\Aggregate.Inputs[Aggregate Input 1].Columns[ProductKey]"
+                      cachedDataType="i4"
+                      cachedName="ProductKey"
+                      lineageId="Package\DF - Load to InventoryFact\DimProduct.Outputs[Lookup Match Output].Columns[ProductKey]" />
+                    <inputColumn
+                      refId="Package\DF - Load to InventoryFact\Aggregate.Inputs[Aggregate Input 1].Columns[quantity_order]"
+                      cachedDataType="i4"
+                      cachedName="quantity_order"
+                      lineageId="Package\DF - Load to InventoryFact\SRC - stgInventoryFact.Outputs[OLE DB Source Output].Columns[quantity_order]" />
+                    <inputColumn
+                      refId="Package\DF - Load to InventoryFact\Aggregate.Inputs[Aggregate Input 1].Columns[quantity_stock]"
+                      cachedDataType="i4"
+                      cachedName="quantity_stock"
+                      lineageId="Package\DF - Load to InventoryFact\SRC - stgInventoryFact.Outputs[OLE DB Source Output].Columns[quantity_stock]" />
+                    <inputColumn
+                      refId="Package\DF - Load to InventoryFact\Aggregate.Inputs[Aggregate Input 1].Columns[stock_value]"
+                      cachedDataType="numeric"
+                      cachedName="stock_value"
+                      cachedPrecision="21"
+                      cachedScale="2"
+                      lineageId="Package\DF - Load to InventoryFact\Derived Column 1.Outputs[Derived Column Output].Columns[stock_value]" />
+                    <inputColumn
+                      refId="Package\DF - Load to InventoryFact\Aggregate.Inputs[Aggregate Input 1].Columns[quantity_in_stock]"
+                      cachedDataType="i4"
+                      cachedName="quantity_in_stock"
+                      lineageId="Package\DF - Load to InventoryFact\Derived Column.Outputs[Derived Column Output].Columns[quantity_in_stock]" />
+                    <inputColumn
+                      refId="Package\DF - Load to InventoryFact\Aggregate.Inputs[Aggregate Input 1].Columns[list_price]"
+                      cachedDataType="numeric"
+                      cachedName="list_price"
+                      cachedPrecision="10"
+                      cachedScale="2"
+                      lineageId="Package\DF - Load to InventoryFact\SRC - stgInventoryFact.Outputs[OLE DB Source Output].Columns[list_price]" />
+                    <inputColumn
+                      refId="Package\DF - Load to InventoryFact\Aggregate.Inputs[Aggregate Input 1].Columns[store_id]"
+                      cachedDataType="i4"
+                      cachedName="store_id"
+                      lineageId="Package\DF - Load to InventoryFact\SRC - stgInventoryFact.Outputs[OLE DB Source Output].Columns[store_id]" />
+                    <inputColumn
+                      refId="Package\DF - Load to InventoryFact\Aggregate.Inputs[Aggregate Input 1].Columns[store_id1]"
+                      cachedDataType="i4"
+                      cachedName="store_id"
+                      lineageId="Package\DF - Load to InventoryFact\DimStock.Outputs[Lookup Match Output].Columns[store_id]" />
+                    <inputColumn
+                      refId="Package\DF - Load to InventoryFact\Aggregate.Inputs[Aggregate Input 1].Columns[product_id]"
+                      cachedDataType="i4"
+                      cachedName="product_id"
+                      lineageId="Package\DF - Load to InventoryFact\DimStock.Outputs[Lookup Match Output].Columns[product_id]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DF - Load to InventoryFact\Aggregate.Outputs[Aggregate Output 1]"
+                  name="Aggregate Output 1">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the approximate number of group by keys that the aggregation produces. Low indicates 500,000 key values, Medium indicates 5 million key values, and High indicates more than 25 million key values. Unspecified indicates no KeyScale value is used."
+                      name="KeyScale"
+                      typeConverter="KeyScaleType">0</property>
+                    <property
+                      dataType="System.Null"
+                      description="Specifies the exact number of group by keys that the aggregation produces. If a KeyScale value is specified, the value in Keys takes precedence."
+                      name="Keys" />
+                  </properties>
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF - Load to InventoryFact\Aggregate.Outputs[Aggregate Output 1].Columns[OrderDateKey]"
+                      dataType="i4"
+                      lineageId="Package\DF - Load to InventoryFact\Aggregate.Outputs[Aggregate Output 1].Columns[OrderDateKey]"
+                      name="OrderDateKey">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the ID of the input column used in the aggregation."
+                          name="AggregationColumnId">#{Package\DF - Load to InventoryFact\Derived Column.Outputs[Derived Column Output].Columns[OrderDateKey]}</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the type of aggregation."
+                          name="AggregationType"
+                          typeConverter="AggregationType">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Indicates whether the column requires special handling because it may contain oversized data or it requires precision beyond a float data type."
+                          name="IsBig">1</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the string comparison options."
+                          name="AggregationComparisonFlags">0</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DF - Load to InventoryFact\Aggregate.Outputs[Aggregate Output 1].Columns[ProductKey]"
+                      dataType="i4"
+                      lineageId="Package\DF - Load to InventoryFact\Aggregate.Outputs[Aggregate Output 1].Columns[ProductKey]"
+                      name="ProductKey">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the ID of the input column used in the aggregation."
+                          name="AggregationColumnId">#{Package\DF - Load to InventoryFact\DimProduct.Outputs[Lookup Match Output].Columns[ProductKey]}</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the type of aggregation."
+                          name="AggregationType"
+                          typeConverter="AggregationType">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Indicates whether the column requires special handling because it may contain oversized data or it requires precision beyond a float data type."
+                          name="IsBig">1</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the string comparison options."
+                          name="AggregationComparisonFlags">0</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DF - Load to InventoryFact\Aggregate.Outputs[Aggregate Output 1].Columns[quantity_order]"
+                      dataType="i8"
+                      lineageId="Package\DF - Load to InventoryFact\Aggregate.Outputs[Aggregate Output 1].Columns[quantity_order]"
+                      name="quantity_order">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the ID of the input column used in the aggregation."
+                          name="AggregationColumnId">#{Package\DF - Load to InventoryFact\SRC - stgInventoryFact.Outputs[OLE DB Source Output].Columns[quantity_order]}</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the type of aggregation."
+                          name="AggregationType"
+                          typeConverter="AggregationType">4</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Indicates whether the column requires special handling because it may contain oversized data or it requires precision beyond a float data type."
+                          name="IsBig">1</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the string comparison options."
+                          name="AggregationComparisonFlags">0</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DF - Load to InventoryFact\Aggregate.Outputs[Aggregate Output 1].Columns[quantity_stock]"
+                      dataType="i4"
+                      lineageId="Package\DF - Load to InventoryFact\Aggregate.Outputs[Aggregate Output 1].Columns[quantity_stock]"
+                      name="quantity_stock">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the ID of the input column used in the aggregation."
+                          name="AggregationColumnId">#{Package\DF - Load to InventoryFact\SRC - stgInventoryFact.Outputs[OLE DB Source Output].Columns[quantity_stock]}</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the type of aggregation."
+                          name="AggregationType"
+                          typeConverter="AggregationType">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Indicates whether the column requires special handling because it may contain oversized data or it requires precision beyond a float data type."
+                          name="IsBig">1</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the string comparison options."
+                          name="AggregationComparisonFlags">0</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DF - Load to InventoryFact\Aggregate.Outputs[Aggregate Output 1].Columns[stock_value]"
+                      dataType="numeric"
+                      lineageId="Package\DF - Load to InventoryFact\Aggregate.Outputs[Aggregate Output 1].Columns[stock_value]"
+                      name="stock_value"
+                      precision="21"
+                      scale="2">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the ID of the input column used in the aggregation."
+                          name="AggregationColumnId">#{Package\DF - Load to InventoryFact\Derived Column 1.Outputs[Derived Column Output].Columns[stock_value]}</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the type of aggregation."
+                          name="AggregationType"
+                          typeConverter="AggregationType">4</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Indicates whether the column requires special handling because it may contain oversized data or it requires precision beyond a float data type."
+                          name="IsBig">1</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the string comparison options."
+                          name="AggregationComparisonFlags">0</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DF - Load to InventoryFact\Aggregate.Outputs[Aggregate Output 1].Columns[quantity_in_stock]"
+                      dataType="i8"
+                      lineageId="Package\DF - Load to InventoryFact\Aggregate.Outputs[Aggregate Output 1].Columns[quantity_in_stock]"
+                      name="quantity_in_stock">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the ID of the input column used in the aggregation."
+                          name="AggregationColumnId">#{Package\DF - Load to InventoryFact\Derived Column.Outputs[Derived Column Output].Columns[quantity_in_stock]}</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the type of aggregation."
+                          name="AggregationType"
+                          typeConverter="AggregationType">4</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Indicates whether the column requires special handling because it may contain oversized data or it requires precision beyond a float data type."
+                          name="IsBig">1</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the string comparison options."
+                          name="AggregationComparisonFlags">0</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DF - Load to InventoryFact\Aggregate.Outputs[Aggregate Output 1].Columns[store_id]"
+                      dataType="i4"
+                      lineageId="Package\DF - Load to InventoryFact\Aggregate.Outputs[Aggregate Output 1].Columns[store_id]"
+                      name="store_id">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the ID of the input column used in the aggregation."
+                          name="AggregationColumnId">#{Package\DF - Load to InventoryFact\SRC - stgInventoryFact.Outputs[OLE DB Source Output].Columns[store_id]}</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the type of aggregation."
+                          name="AggregationType"
+                          typeConverter="AggregationType">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Indicates whether the column requires special handling because it may contain oversized data or it requires precision beyond a float data type."
+                          name="IsBig">1</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the string comparison options."
+                          name="AggregationComparisonFlags">0</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DF - Load to InventoryFact\Aggregate.Outputs[Aggregate Output 1].Columns[list_price]"
+                      dataType="numeric"
+                      lineageId="Package\DF - Load to InventoryFact\Aggregate.Outputs[Aggregate Output 1].Columns[list_price]"
+                      name="list_price"
+                      precision="10"
+                      scale="2">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the ID of the input column used in the aggregation."
+                          name="AggregationColumnId">#{Package\DF - Load to InventoryFact\SRC - stgInventoryFact.Outputs[OLE DB Source Output].Columns[list_price]}</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the type of aggregation."
+                          name="AggregationType"
+                          typeConverter="AggregationType">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Indicates whether the column requires special handling because it may contain oversized data or it requires precision beyond a float data type."
+                          name="IsBig">1</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the string comparison options."
+                          name="AggregationComparisonFlags">0</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DF - Load to InventoryFact\Aggregate.Outputs[Aggregate Output 1].Columns[DimStock.store_id]"
+                      dataType="i4"
+                      lineageId="Package\DF - Load to InventoryFact\Aggregate.Outputs[Aggregate Output 1].Columns[DimStock.store_id]"
+                      name="DimStock.store_id">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the ID of the input column used in the aggregation."
+                          name="AggregationColumnId">#{Package\DF - Load to InventoryFact\DimStock.Outputs[Lookup Match Output].Columns[store_id]}</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the type of aggregation."
+                          name="AggregationType"
+                          typeConverter="AggregationType">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Indicates whether the column requires special handling because it may contain oversized data or it requires precision beyond a float data type."
+                          name="IsBig">1</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the string comparison options."
+                          name="AggregationComparisonFlags">0</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DF - Load to InventoryFact\Aggregate.Outputs[Aggregate Output 1].Columns[DimStock.product_id]"
+                      dataType="i4"
+                      lineageId="Package\DF - Load to InventoryFact\Aggregate.Outputs[Aggregate Output 1].Columns[DimStock.product_id]"
+                      name="DimStock.product_id">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the ID of the input column used in the aggregation."
+                          name="AggregationColumnId">#{Package\DF - Load to InventoryFact\DimStock.Outputs[Lookup Match Output].Columns[product_id]}</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the type of aggregation."
+                          name="AggregationType"
+                          typeConverter="AggregationType">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Indicates whether the column requires special handling because it may contain oversized data or it requires precision beyond a float data type."
+                          name="IsBig">1</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the string comparison options."
+                          name="AggregationComparisonFlags">0</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DF - Load to InventoryFact\Derived Column"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Derived Column"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\DF - Load to InventoryFact\Derived Column.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DF - Load to InventoryFact\Derived Column.Inputs[Derived Column Input].Columns[order_date]"
+                      cachedDataType="dbDate"
+                      cachedName="order_date"
+                      lineageId="Package\DF - Load to InventoryFact\SRC - stgInventoryFact.Outputs[OLE DB Source Output].Columns[order_date]" />
+                    <inputColumn
+                      refId="Package\DF - Load to InventoryFact\Derived Column.Inputs[Derived Column Input].Columns[quantity_stock]"
+                      cachedDataType="i4"
+                      cachedName="quantity_stock"
+                      lineageId="Package\DF - Load to InventoryFact\SRC - stgInventoryFact.Outputs[OLE DB Source Output].Columns[quantity_stock]" />
+                    <inputColumn
+                      refId="Package\DF - Load to InventoryFact\Derived Column.Inputs[Derived Column Input].Columns[quantity_order]"
+                      cachedDataType="i4"
+                      cachedName="quantity_order"
+                      lineageId="Package\DF - Load to InventoryFact\SRC - stgInventoryFact.Outputs[OLE DB Source Output].Columns[quantity_order]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DF - Load to InventoryFact\Derived Column.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\DF - Load to InventoryFact\Derived Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF - Load to InventoryFact\Derived Column.Outputs[Derived Column Output].Columns[OrderDateKey]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\DF - Load to InventoryFact\Derived Column.Outputs[Derived Column Output].Columns[OrderDateKey]"
+                      name="OrderDateKey"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">[DAY](#{Package\DF - Load to InventoryFact\SRC - stgInventoryFact.Outputs[OLE DB Source Output].Columns[order_date]}) + [MONTH](#{Package\DF - Load to InventoryFact\SRC - stgInventoryFact.Outputs[OLE DB Source Output].Columns[order_date]}) * 100 + [YEAR](#{Package\DF - Load to InventoryFact\SRC - stgInventoryFact.Outputs[OLE DB Source Output].Columns[order_date]}) * 10000</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">DAY(order_date) + MONTH(order_date) * 100 + YEAR(order_date) * 10000</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DF - Load to InventoryFact\Derived Column.Outputs[Derived Column Output].Columns[quantity_in_stock]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\DF - Load to InventoryFact\Derived Column.Outputs[Derived Column Output].Columns[quantity_in_stock]"
+                      name="quantity_in_stock"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">#{Package\DF - Load to InventoryFact\SRC - stgInventoryFact.Outputs[OLE DB Source Output].Columns[quantity_stock]} - #{Package\DF - Load to InventoryFact\SRC - stgInventoryFact.Outputs[OLE DB Source Output].Columns[quantity_order]}</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">quantity_stock - quantity_order</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DF - Load to InventoryFact\Derived Column.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\DF - Load to InventoryFact\Derived Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF - Load to InventoryFact\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DF - Load to InventoryFact\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DF - Load to InventoryFact\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DF - Load to InventoryFact\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DF - Load to InventoryFact\Derived Column 1"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Derived Column 1"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\DF - Load to InventoryFact\Derived Column 1.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DF - Load to InventoryFact\Derived Column 1.Inputs[Derived Column Input].Columns[list_price]"
+                      cachedDataType="numeric"
+                      cachedName="list_price"
+                      cachedPrecision="10"
+                      cachedScale="2"
+                      lineageId="Package\DF - Load to InventoryFact\SRC - stgInventoryFact.Outputs[OLE DB Source Output].Columns[list_price]" />
+                    <inputColumn
+                      refId="Package\DF - Load to InventoryFact\Derived Column 1.Inputs[Derived Column Input].Columns[quantity_in_stock]"
+                      cachedDataType="i4"
+                      cachedName="quantity_in_stock"
+                      lineageId="Package\DF - Load to InventoryFact\Derived Column.Outputs[Derived Column Output].Columns[quantity_in_stock]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DF - Load to InventoryFact\Derived Column 1.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\DF - Load to InventoryFact\Derived Column 1.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF - Load to InventoryFact\Derived Column 1.Outputs[Derived Column Output].Columns[stock_value]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\DF - Load to InventoryFact\Derived Column 1.Outputs[Derived Column Output].Columns[stock_value]"
+                      name="stock_value"
+                      precision="21"
+                      scale="2"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">#{Package\DF - Load to InventoryFact\Derived Column.Outputs[Derived Column Output].Columns[quantity_in_stock]} * #{Package\DF - Load to InventoryFact\SRC - stgInventoryFact.Outputs[OLE DB Source Output].Columns[list_price]}</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">quantity_in_stock * list_price</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DF - Load to InventoryFact\Derived Column 1.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\DF - Load to InventoryFact\Derived Column 1.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF - Load to InventoryFact\Derived Column 1.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DF - Load to InventoryFact\Derived Column 1.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DF - Load to InventoryFact\Derived Column 1.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DF - Load to InventoryFact\Derived Column 1.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DF - Load to InventoryFact\DimProduct"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="DimProduct"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [dbo].[DimProduct]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [dbo].[DimProduct]) [refTable]
+where [refTable].[ProductID] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="ProductKey" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="ProductID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="ProductName" dataType="DT_STR" length="255" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="BrandName" dataType="DT_STR" length="255" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="CategoryName" dataType="DT_STR" length="255" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="ModelYear" dataType="DT_I2" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="ListPrice" dataType="DT_NUMERIC" length="0" precision="10" scale="2" codePage="0"/&gt;&lt;referenceColumn name="RowIsCurrent" dataType="DT_BOOL" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="RowStartDate" dataType="DT_DBTIMESTAMP" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="RowEndDate" dataType="DT_DBTIMESTAMP" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="RowChangeReason" dataType="DT_WSTR" length="200" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\DF - Load to InventoryFact\SRC - stgInventoryFact.Outputs[OLE DB Source Output].Columns[product_id]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DF - Load to InventoryFact\DimProduct.Connections[OleDbConnection]"
+                  connectionManagerID="{73EA1AE5-CDDB-469F-861A-C3F9C0F34AAB}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[LocalHost.BikeStoresDW]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DF - Load to InventoryFact\DimProduct.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DF - Load to InventoryFact\DimProduct.Inputs[Lookup Input].Columns[product_id]"
+                      cachedDataType="i4"
+                      cachedName="product_id"
+                      lineageId="Package\DF - Load to InventoryFact\SRC - stgInventoryFact.Outputs[OLE DB Source Output].Columns[product_id]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">ProductID</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DF - Load to InventoryFact\DimProduct.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\DF - Load to InventoryFact\DimProduct.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF - Load to InventoryFact\DimProduct.Outputs[Lookup Match Output].Columns[ProductKey]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\DF - Load to InventoryFact\DimProduct.Outputs[Lookup Match Output].Columns[ProductKey]"
+                      name="ProductKey"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">ProductKey</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DF - Load to InventoryFact\DimProduct.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\DF - Load to InventoryFact\DimProduct.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DF - Load to InventoryFact\DimProduct.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\DF - Load to InventoryFact\DimProduct.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF - Load to InventoryFact\DimProduct.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DF - Load to InventoryFact\DimProduct.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DF - Load to InventoryFact\DimProduct.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DF - Load to InventoryFact\DimProduct.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DF - Load to InventoryFact\DimStock"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="DimStock"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [dbo].[DimStock]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [dbo].[DimStock]) [refTable]
+where [refTable].[product_id] = ? and [refTable].[store_id] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="store_id" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="store_name" dataType="DT_STR" length="255" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="product_id" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="product_name" dataType="DT_STR" length="255" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="quantity" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\DF - Load to InventoryFact\SRC - stgInventoryFact.Outputs[OLE DB Source Output].Columns[product_id]};#{Package\DF - Load to InventoryFact\SRC - stgInventoryFact.Outputs[OLE DB Source Output].Columns[store_id]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DF - Load to InventoryFact\DimStock.Connections[OleDbConnection]"
+                  connectionManagerID="{73EA1AE5-CDDB-469F-861A-C3F9C0F34AAB}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[LocalHost.BikeStoresDW]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DF - Load to InventoryFact\DimStock.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DF - Load to InventoryFact\DimStock.Inputs[Lookup Input].Columns[store_id]"
+                      cachedDataType="i4"
+                      cachedName="store_id"
+                      lineageId="Package\DF - Load to InventoryFact\SRC - stgInventoryFact.Outputs[OLE DB Source Output].Columns[store_id]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">store_id</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DF - Load to InventoryFact\DimStock.Inputs[Lookup Input].Columns[product_id]"
+                      cachedDataType="i4"
+                      cachedName="product_id"
+                      lineageId="Package\DF - Load to InventoryFact\SRC - stgInventoryFact.Outputs[OLE DB Source Output].Columns[product_id]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">product_id</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DF - Load to InventoryFact\DimStock.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\DF - Load to InventoryFact\DimStock.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF - Load to InventoryFact\DimStock.Outputs[Lookup Match Output].Columns[store_id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\DF - Load to InventoryFact\DimStock.Outputs[Lookup Match Output].Columns[store_id]"
+                      name="store_id"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">store_id</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DF - Load to InventoryFact\DimStock.Outputs[Lookup Match Output].Columns[product_id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\DF - Load to InventoryFact\DimStock.Outputs[Lookup Match Output].Columns[product_id]"
+                      name="product_id"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">product_id</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DF - Load to InventoryFact\DimStock.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\DF - Load to InventoryFact\DimStock.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DF - Load to InventoryFact\DimStock.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\DF - Load to InventoryFact\DimStock.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF - Load to InventoryFact\DimStock.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DF - Load to InventoryFact\DimStock.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DF - Load to InventoryFact\DimStock.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DF - Load to InventoryFact\DimStock.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DF - Load to InventoryFact\DST - Load to InventoryFact"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="DST - Load to InventoryFact"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[InventoryFact]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DF - Load to InventoryFact\DST - Load to InventoryFact.Connections[OleDbConnection]"
+                  connectionManagerID="{73EA1AE5-CDDB-469F-861A-C3F9C0F34AAB}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[LocalHost.BikeStoresDW]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DF - Load to InventoryFact\DST - Load to InventoryFact.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DF - Load to InventoryFact\DST - Load to InventoryFact.Inputs[OLE DB Destination Input].Columns[OrderDateKey]"
+                      cachedDataType="i4"
+                      cachedName="OrderDateKey"
+                      externalMetadataColumnId="Package\DF - Load to InventoryFact\DST - Load to InventoryFact.Inputs[OLE DB Destination Input].ExternalColumns[OrderDateKey]"
+                      lineageId="Package\DF - Load to InventoryFact\Aggregate.Outputs[Aggregate Output 1].Columns[OrderDateKey]" />
+                    <inputColumn
+                      refId="Package\DF - Load to InventoryFact\DST - Load to InventoryFact.Inputs[OLE DB Destination Input].Columns[ProductKey]"
+                      cachedDataType="i4"
+                      cachedName="ProductKey"
+                      externalMetadataColumnId="Package\DF - Load to InventoryFact\DST - Load to InventoryFact.Inputs[OLE DB Destination Input].ExternalColumns[ProductKey]"
+                      lineageId="Package\DF - Load to InventoryFact\Aggregate.Outputs[Aggregate Output 1].Columns[ProductKey]" />
+                    <inputColumn
+                      refId="Package\DF - Load to InventoryFact\DST - Load to InventoryFact.Inputs[OLE DB Destination Input].Columns[quantity_order]"
+                      cachedDataType="i8"
+                      cachedName="quantity_order"
+                      externalMetadataColumnId="Package\DF - Load to InventoryFact\DST - Load to InventoryFact.Inputs[OLE DB Destination Input].ExternalColumns[quantity_order]"
+                      lineageId="Package\DF - Load to InventoryFact\Aggregate.Outputs[Aggregate Output 1].Columns[quantity_order]" />
+                    <inputColumn
+                      refId="Package\DF - Load to InventoryFact\DST - Load to InventoryFact.Inputs[OLE DB Destination Input].Columns[quantity_stock]"
+                      cachedDataType="i4"
+                      cachedName="quantity_stock"
+                      externalMetadataColumnId="Package\DF - Load to InventoryFact\DST - Load to InventoryFact.Inputs[OLE DB Destination Input].ExternalColumns[quantity_stock]"
+                      lineageId="Package\DF - Load to InventoryFact\Aggregate.Outputs[Aggregate Output 1].Columns[quantity_stock]" />
+                    <inputColumn
+                      refId="Package\DF - Load to InventoryFact\DST - Load to InventoryFact.Inputs[OLE DB Destination Input].Columns[quantity_in_stock]"
+                      cachedDataType="i8"
+                      cachedName="quantity_in_stock"
+                      externalMetadataColumnId="Package\DF - Load to InventoryFact\DST - Load to InventoryFact.Inputs[OLE DB Destination Input].ExternalColumns[quantity_in_stock]"
+                      lineageId="Package\DF - Load to InventoryFact\Aggregate.Outputs[Aggregate Output 1].Columns[quantity_in_stock]" />
+                    <inputColumn
+                      refId="Package\DF - Load to InventoryFact\DST - Load to InventoryFact.Inputs[OLE DB Destination Input].Columns[stock_value]"
+                      cachedDataType="numeric"
+                      cachedName="stock_value"
+                      cachedPrecision="21"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\DF - Load to InventoryFact\DST - Load to InventoryFact.Inputs[OLE DB Destination Input].ExternalColumns[stock_value]"
+                      lineageId="Package\DF - Load to InventoryFact\Aggregate.Outputs[Aggregate Output 1].Columns[stock_value]" />
+                    <inputColumn
+                      refId="Package\DF - Load to InventoryFact\DST - Load to InventoryFact.Inputs[OLE DB Destination Input].Columns[list_price]"
+                      cachedDataType="numeric"
+                      cachedName="list_price"
+                      cachedPrecision="10"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\DF - Load to InventoryFact\DST - Load to InventoryFact.Inputs[OLE DB Destination Input].ExternalColumns[list_price]"
+                      lineageId="Package\DF - Load to InventoryFact\Aggregate.Outputs[Aggregate Output 1].Columns[list_price]" />
+                    <inputColumn
+                      refId="Package\DF - Load to InventoryFact\DST - Load to InventoryFact.Inputs[OLE DB Destination Input].Columns[DimStock.product_id]"
+                      cachedDataType="i4"
+                      cachedName="DimStock.product_id"
+                      externalMetadataColumnId="Package\DF - Load to InventoryFact\DST - Load to InventoryFact.Inputs[OLE DB Destination Input].ExternalColumns[product_id]"
+                      lineageId="Package\DF - Load to InventoryFact\Aggregate.Outputs[Aggregate Output 1].Columns[DimStock.product_id]" />
+                    <inputColumn
+                      refId="Package\DF - Load to InventoryFact\DST - Load to InventoryFact.Inputs[OLE DB Destination Input].Columns[DimStock.store_id]"
+                      cachedDataType="i4"
+                      cachedName="DimStock.store_id"
+                      externalMetadataColumnId="Package\DF - Load to InventoryFact\DST - Load to InventoryFact.Inputs[OLE DB Destination Input].ExternalColumns[store_id]"
+                      lineageId="Package\DF - Load to InventoryFact\Aggregate.Outputs[Aggregate Output 1].Columns[DimStock.store_id]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DF - Load to InventoryFact\DST - Load to InventoryFact.Inputs[OLE DB Destination Input].ExternalColumns[OrderDateKey]"
+                      dataType="i4"
+                      name="OrderDateKey" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Load to InventoryFact\DST - Load to InventoryFact.Inputs[OLE DB Destination Input].ExternalColumns[ProductKey]"
+                      dataType="i4"
+                      name="ProductKey" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Load to InventoryFact\DST - Load to InventoryFact.Inputs[OLE DB Destination Input].ExternalColumns[quantity_stock]"
+                      dataType="i4"
+                      name="quantity_stock" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Load to InventoryFact\DST - Load to InventoryFact.Inputs[OLE DB Destination Input].ExternalColumns[quantity_order]"
+                      dataType="i4"
+                      name="quantity_order" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Load to InventoryFact\DST - Load to InventoryFact.Inputs[OLE DB Destination Input].ExternalColumns[store_id]"
+                      dataType="i4"
+                      name="store_id" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Load to InventoryFact\DST - Load to InventoryFact.Inputs[OLE DB Destination Input].ExternalColumns[quantity_in_stock]"
+                      dataType="i4"
+                      name="quantity_in_stock" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Load to InventoryFact\DST - Load to InventoryFact.Inputs[OLE DB Destination Input].ExternalColumns[stock_value]"
+                      dataType="i4"
+                      name="stock_value" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Load to InventoryFact\DST - Load to InventoryFact.Inputs[OLE DB Destination Input].ExternalColumns[list_price]"
+                      dataType="numeric"
+                      name="list_price"
+                      precision="10"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Load to InventoryFact\DST - Load to InventoryFact.Inputs[OLE DB Destination Input].ExternalColumns[product_id]"
+                      dataType="i4"
+                      name="product_id" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DF - Load to InventoryFact\DST - Load to InventoryFact.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\DF - Load to InventoryFact\DST - Load to InventoryFact.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF - Load to InventoryFact\DST - Load to InventoryFact.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DF - Load to InventoryFact\DST - Load to InventoryFact.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DF - Load to InventoryFact\DST - Load to InventoryFact.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DF - Load to InventoryFact\DST - Load to InventoryFact.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DF - Load to InventoryFact\SRC - stgInventoryFact"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="SRC - stgInventoryFact"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[stgInventoryFact]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DF - Load to InventoryFact\SRC - stgInventoryFact.Connections[OleDbConnection]"
+                  connectionManagerID="{E8A0A8BC-CE40-41EC-B09A-79FEA2F85A47}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[LocalHost.BikeStoresStage]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\DF - Load to InventoryFact\SRC - stgInventoryFact.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF - Load to InventoryFact\SRC - stgInventoryFact.Outputs[OLE DB Source Output].Columns[order_date]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF - Load to InventoryFact\SRC - stgInventoryFact.Outputs[OLE DB Source Output].ExternalColumns[order_date]"
+                      lineageId="Package\DF - Load to InventoryFact\SRC - stgInventoryFact.Outputs[OLE DB Source Output].Columns[order_date]"
+                      name="order_date"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF - Load to InventoryFact\SRC - stgInventoryFact.Outputs[OLE DB Source Output].Columns[product_id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF - Load to InventoryFact\SRC - stgInventoryFact.Outputs[OLE DB Source Output].ExternalColumns[product_id]"
+                      lineageId="Package\DF - Load to InventoryFact\SRC - stgInventoryFact.Outputs[OLE DB Source Output].Columns[product_id]"
+                      name="product_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF - Load to InventoryFact\SRC - stgInventoryFact.Outputs[OLE DB Source Output].Columns[quantity_stock]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF - Load to InventoryFact\SRC - stgInventoryFact.Outputs[OLE DB Source Output].ExternalColumns[quantity_stock]"
+                      lineageId="Package\DF - Load to InventoryFact\SRC - stgInventoryFact.Outputs[OLE DB Source Output].Columns[quantity_stock]"
+                      name="quantity_stock"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF - Load to InventoryFact\SRC - stgInventoryFact.Outputs[OLE DB Source Output].Columns[quantity_order]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF - Load to InventoryFact\SRC - stgInventoryFact.Outputs[OLE DB Source Output].ExternalColumns[quantity_order]"
+                      lineageId="Package\DF - Load to InventoryFact\SRC - stgInventoryFact.Outputs[OLE DB Source Output].Columns[quantity_order]"
+                      name="quantity_order"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF - Load to InventoryFact\SRC - stgInventoryFact.Outputs[OLE DB Source Output].Columns[store_id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF - Load to InventoryFact\SRC - stgInventoryFact.Outputs[OLE DB Source Output].ExternalColumns[store_id]"
+                      lineageId="Package\DF - Load to InventoryFact\SRC - stgInventoryFact.Outputs[OLE DB Source Output].Columns[store_id]"
+                      name="store_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF - Load to InventoryFact\SRC - stgInventoryFact.Outputs[OLE DB Source Output].Columns[list_price]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF - Load to InventoryFact\SRC - stgInventoryFact.Outputs[OLE DB Source Output].ExternalColumns[list_price]"
+                      lineageId="Package\DF - Load to InventoryFact\SRC - stgInventoryFact.Outputs[OLE DB Source Output].Columns[list_price]"
+                      name="list_price"
+                      precision="10"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DF - Load to InventoryFact\SRC - stgInventoryFact.Outputs[OLE DB Source Output].ExternalColumns[order_date]"
+                      dataType="dbDate"
+                      name="order_date" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Load to InventoryFact\SRC - stgInventoryFact.Outputs[OLE DB Source Output].ExternalColumns[product_id]"
+                      dataType="i4"
+                      name="product_id" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Load to InventoryFact\SRC - stgInventoryFact.Outputs[OLE DB Source Output].ExternalColumns[quantity_stock]"
+                      dataType="i4"
+                      name="quantity_stock" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Load to InventoryFact\SRC - stgInventoryFact.Outputs[OLE DB Source Output].ExternalColumns[quantity_order]"
+                      dataType="i4"
+                      name="quantity_order" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Load to InventoryFact\SRC - stgInventoryFact.Outputs[OLE DB Source Output].ExternalColumns[store_id]"
+                      dataType="i4"
+                      name="store_id" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Load to InventoryFact\SRC - stgInventoryFact.Outputs[OLE DB Source Output].ExternalColumns[list_price]"
+                      dataType="numeric"
+                      name="list_price"
+                      precision="10"
+                      scale="2" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\DF - Load to InventoryFact\SRC - stgInventoryFact.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF - Load to InventoryFact\SRC - stgInventoryFact.Outputs[OLE DB Source Error Output].Columns[order_date]"
+                      dataType="dbDate"
+                      lineageId="Package\DF - Load to InventoryFact\SRC - stgInventoryFact.Outputs[OLE DB Source Error Output].Columns[order_date]"
+                      name="order_date" />
+                    <outputColumn
+                      refId="Package\DF - Load to InventoryFact\SRC - stgInventoryFact.Outputs[OLE DB Source Error Output].Columns[product_id]"
+                      dataType="i4"
+                      lineageId="Package\DF - Load to InventoryFact\SRC - stgInventoryFact.Outputs[OLE DB Source Error Output].Columns[product_id]"
+                      name="product_id" />
+                    <outputColumn
+                      refId="Package\DF - Load to InventoryFact\SRC - stgInventoryFact.Outputs[OLE DB Source Error Output].Columns[quantity_stock]"
+                      dataType="i4"
+                      lineageId="Package\DF - Load to InventoryFact\SRC - stgInventoryFact.Outputs[OLE DB Source Error Output].Columns[quantity_stock]"
+                      name="quantity_stock" />
+                    <outputColumn
+                      refId="Package\DF - Load to InventoryFact\SRC - stgInventoryFact.Outputs[OLE DB Source Error Output].Columns[quantity_order]"
+                      dataType="i4"
+                      lineageId="Package\DF - Load to InventoryFact\SRC - stgInventoryFact.Outputs[OLE DB Source Error Output].Columns[quantity_order]"
+                      name="quantity_order" />
+                    <outputColumn
+                      refId="Package\DF - Load to InventoryFact\SRC - stgInventoryFact.Outputs[OLE DB Source Error Output].Columns[store_id]"
+                      dataType="i4"
+                      lineageId="Package\DF - Load to InventoryFact\SRC - stgInventoryFact.Outputs[OLE DB Source Error Output].Columns[store_id]"
+                      name="store_id" />
+                    <outputColumn
+                      refId="Package\DF - Load to InventoryFact\SRC - stgInventoryFact.Outputs[OLE DB Source Error Output].Columns[list_price]"
+                      dataType="numeric"
+                      lineageId="Package\DF - Load to InventoryFact\SRC - stgInventoryFact.Outputs[OLE DB Source Error Output].Columns[list_price]"
+                      name="list_price"
+                      precision="10"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\DF - Load to InventoryFact\SRC - stgInventoryFact.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DF - Load to InventoryFact\SRC - stgInventoryFact.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DF - Load to InventoryFact\SRC - stgInventoryFact.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DF - Load to InventoryFact\SRC - stgInventoryFact.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\DF - Load to InventoryFact.Paths[Aggregate Output 1]"
+              endId="Package\DF - Load to InventoryFact\DST - Load to InventoryFact.Inputs[OLE DB Destination Input]"
+              name="Aggregate Output 1"
+              startId="Package\DF - Load to InventoryFact\Aggregate.Outputs[Aggregate Output 1]" />
+            <path
+              refId="Package\DF - Load to InventoryFact.Paths[Derived Column Output]"
+              endId="Package\DF - Load to InventoryFact\DimProduct.Inputs[Lookup Input]"
+              name="Derived Column Output"
+              startId="Package\DF - Load to InventoryFact\Derived Column.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\DF - Load to InventoryFact.Paths[Derived Column Output1]"
+              endId="Package\DF - Load to InventoryFact\Aggregate.Inputs[Aggregate Input 1]"
+              name="Derived Column Output"
+              startId="Package\DF - Load to InventoryFact\Derived Column 1.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\DF - Load to InventoryFact.Paths[Lookup Match Output]"
+              endId="Package\DF - Load to InventoryFact\DimStock.Inputs[Lookup Input]"
+              name="Lookup Match Output"
+              startId="Package\DF - Load to InventoryFact\DimProduct.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\DF - Load to InventoryFact.Paths[Lookup Match Output1]"
+              endId="Package\DF - Load to InventoryFact\Derived Column 1.Inputs[Derived Column Input]"
+              name="Lookup Match Output"
+              startId="Package\DF - Load to InventoryFact\DimStock.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\DF - Load to InventoryFact.Paths[OLE DB Source Output]"
+              endId="Package\DF - Load to InventoryFact\Derived Column.Inputs[Derived Column Input]"
+              name="OLE DB Source Output"
+              startId="Package\DF - Load to InventoryFact\SRC - stgInventoryFact.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\DF - Stage Inventory Fact"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{EF6980C1-86AD-44E9-817D-8511DC4BC880}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="DF - Stage Inventory Fact"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\DF - Stage Inventory Fact\DST - Stage stgInventoryFact"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="DST - Stage stgInventoryFact"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[stgInventoryFact]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DF - Stage Inventory Fact\DST - Stage stgInventoryFact.Connections[OleDbConnection]"
+                  connectionManagerID="{E8A0A8BC-CE40-41EC-B09A-79FEA2F85A47}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[LocalHost.BikeStoresStage]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DF - Stage Inventory Fact\DST - Stage stgInventoryFact.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DF - Stage Inventory Fact\DST - Stage stgInventoryFact.Inputs[OLE DB Destination Input].Columns[order_date]"
+                      cachedDataType="dbDate"
+                      cachedName="order_date"
+                      externalMetadataColumnId="Package\DF - Stage Inventory Fact\DST - Stage stgInventoryFact.Inputs[OLE DB Destination Input].ExternalColumns[order_date]"
+                      lineageId="Package\DF - Stage Inventory Fact\SRC - BikeStores.Outputs[OLE DB Source Output].Columns[order_date]" />
+                    <inputColumn
+                      refId="Package\DF - Stage Inventory Fact\DST - Stage stgInventoryFact.Inputs[OLE DB Destination Input].Columns[product_id]"
+                      cachedDataType="i4"
+                      cachedName="product_id"
+                      externalMetadataColumnId="Package\DF - Stage Inventory Fact\DST - Stage stgInventoryFact.Inputs[OLE DB Destination Input].ExternalColumns[product_id]"
+                      lineageId="Package\DF - Stage Inventory Fact\SRC - BikeStores.Outputs[OLE DB Source Output].Columns[product_id]" />
+                    <inputColumn
+                      refId="Package\DF - Stage Inventory Fact\DST - Stage stgInventoryFact.Inputs[OLE DB Destination Input].Columns[quantity_stock]"
+                      cachedDataType="i4"
+                      cachedName="quantity_stock"
+                      externalMetadataColumnId="Package\DF - Stage Inventory Fact\DST - Stage stgInventoryFact.Inputs[OLE DB Destination Input].ExternalColumns[quantity_stock]"
+                      lineageId="Package\DF - Stage Inventory Fact\SRC - BikeStores.Outputs[OLE DB Source Output].Columns[quantity_stock]" />
+                    <inputColumn
+                      refId="Package\DF - Stage Inventory Fact\DST - Stage stgInventoryFact.Inputs[OLE DB Destination Input].Columns[quantity_order]"
+                      cachedDataType="i4"
+                      cachedName="quantity_order"
+                      externalMetadataColumnId="Package\DF - Stage Inventory Fact\DST - Stage stgInventoryFact.Inputs[OLE DB Destination Input].ExternalColumns[quantity_order]"
+                      lineageId="Package\DF - Stage Inventory Fact\SRC - BikeStores.Outputs[OLE DB Source Output].Columns[quantity_order]" />
+                    <inputColumn
+                      refId="Package\DF - Stage Inventory Fact\DST - Stage stgInventoryFact.Inputs[OLE DB Destination Input].Columns[store_id]"
+                      cachedDataType="i4"
+                      cachedName="store_id"
+                      externalMetadataColumnId="Package\DF - Stage Inventory Fact\DST - Stage stgInventoryFact.Inputs[OLE DB Destination Input].ExternalColumns[store_id]"
+                      lineageId="Package\DF - Stage Inventory Fact\SRC - BikeStores.Outputs[OLE DB Source Output].Columns[store_id]" />
+                    <inputColumn
+                      refId="Package\DF - Stage Inventory Fact\DST - Stage stgInventoryFact.Inputs[OLE DB Destination Input].Columns[list_price]"
+                      cachedDataType="numeric"
+                      cachedName="list_price"
+                      cachedPrecision="10"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\DF - Stage Inventory Fact\DST - Stage stgInventoryFact.Inputs[OLE DB Destination Input].ExternalColumns[list_price]"
+                      lineageId="Package\DF - Stage Inventory Fact\SRC - BikeStores.Outputs[OLE DB Source Output].Columns[list_price]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DF - Stage Inventory Fact\DST - Stage stgInventoryFact.Inputs[OLE DB Destination Input].ExternalColumns[order_date]"
+                      dataType="dbDate"
+                      name="order_date" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Stage Inventory Fact\DST - Stage stgInventoryFact.Inputs[OLE DB Destination Input].ExternalColumns[product_id]"
+                      dataType="i4"
+                      name="product_id" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Stage Inventory Fact\DST - Stage stgInventoryFact.Inputs[OLE DB Destination Input].ExternalColumns[quantity_stock]"
+                      dataType="i4"
+                      name="quantity_stock" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Stage Inventory Fact\DST - Stage stgInventoryFact.Inputs[OLE DB Destination Input].ExternalColumns[quantity_order]"
+                      dataType="i4"
+                      name="quantity_order" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Stage Inventory Fact\DST - Stage stgInventoryFact.Inputs[OLE DB Destination Input].ExternalColumns[store_id]"
+                      dataType="i4"
+                      name="store_id" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Stage Inventory Fact\DST - Stage stgInventoryFact.Inputs[OLE DB Destination Input].ExternalColumns[list_price]"
+                      dataType="numeric"
+                      name="list_price"
+                      precision="10"
+                      scale="2" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DF - Stage Inventory Fact\DST - Stage stgInventoryFact.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\DF - Stage Inventory Fact\DST - Stage stgInventoryFact.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF - Stage Inventory Fact\DST - Stage stgInventoryFact.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DF - Stage Inventory Fact\DST - Stage stgInventoryFact.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DF - Stage Inventory Fact\DST - Stage stgInventoryFact.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DF - Stage Inventory Fact\DST - Stage stgInventoryFact.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DF - Stage Inventory Fact\SRC - BikeStores"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="SRC - BikeStores"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT 
+    d.order_date,
+    s.store_id,
+    p.product_id, 
+    p.list_price,
+    s.quantity AS quantity_stock,
+    di.quantity AS quantity_order
+FROM     
+    sales.order_items di
+    INNER JOIN sales.orders d ON di.order_id = d.order_id
+    INNER JOIN production.products p ON di.product_id = p.product_id
+    INNER JOIN production.stocks s ON s.product_id = p.product_id and s.store_id = d.store_id</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DF - Stage Inventory Fact\SRC - BikeStores.Connections[OleDbConnection]"
+                  connectionManagerID="{87BFDBEA-C44C-4F83-85AE-42DFE5E6435D}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[LocalHost.BikeStores]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\DF - Stage Inventory Fact\SRC - BikeStores.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF - Stage Inventory Fact\SRC - BikeStores.Outputs[OLE DB Source Output].Columns[order_date]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF - Stage Inventory Fact\SRC - BikeStores.Outputs[OLE DB Source Output].ExternalColumns[order_date]"
+                      lineageId="Package\DF - Stage Inventory Fact\SRC - BikeStores.Outputs[OLE DB Source Output].Columns[order_date]"
+                      name="order_date"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF - Stage Inventory Fact\SRC - BikeStores.Outputs[OLE DB Source Output].Columns[product_id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF - Stage Inventory Fact\SRC - BikeStores.Outputs[OLE DB Source Output].ExternalColumns[product_id]"
+                      lineageId="Package\DF - Stage Inventory Fact\SRC - BikeStores.Outputs[OLE DB Source Output].Columns[product_id]"
+                      name="product_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF - Stage Inventory Fact\SRC - BikeStores.Outputs[OLE DB Source Output].Columns[quantity_stock]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF - Stage Inventory Fact\SRC - BikeStores.Outputs[OLE DB Source Output].ExternalColumns[quantity_stock]"
+                      lineageId="Package\DF - Stage Inventory Fact\SRC - BikeStores.Outputs[OLE DB Source Output].Columns[quantity_stock]"
+                      name="quantity_stock"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF - Stage Inventory Fact\SRC - BikeStores.Outputs[OLE DB Source Output].Columns[quantity_order]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF - Stage Inventory Fact\SRC - BikeStores.Outputs[OLE DB Source Output].ExternalColumns[quantity_order]"
+                      lineageId="Package\DF - Stage Inventory Fact\SRC - BikeStores.Outputs[OLE DB Source Output].Columns[quantity_order]"
+                      name="quantity_order"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF - Stage Inventory Fact\SRC - BikeStores.Outputs[OLE DB Source Output].Columns[store_id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF - Stage Inventory Fact\SRC - BikeStores.Outputs[OLE DB Source Output].ExternalColumns[store_id]"
+                      lineageId="Package\DF - Stage Inventory Fact\SRC - BikeStores.Outputs[OLE DB Source Output].Columns[store_id]"
+                      name="store_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF - Stage Inventory Fact\SRC - BikeStores.Outputs[OLE DB Source Output].Columns[list_price]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF - Stage Inventory Fact\SRC - BikeStores.Outputs[OLE DB Source Output].ExternalColumns[list_price]"
+                      lineageId="Package\DF - Stage Inventory Fact\SRC - BikeStores.Outputs[OLE DB Source Output].Columns[list_price]"
+                      name="list_price"
+                      precision="10"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DF - Stage Inventory Fact\SRC - BikeStores.Outputs[OLE DB Source Output].ExternalColumns[order_date]"
+                      dataType="dbDate"
+                      name="order_date" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Stage Inventory Fact\SRC - BikeStores.Outputs[OLE DB Source Output].ExternalColumns[product_id]"
+                      dataType="i4"
+                      name="product_id" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Stage Inventory Fact\SRC - BikeStores.Outputs[OLE DB Source Output].ExternalColumns[quantity_stock]"
+                      dataType="i4"
+                      name="quantity_stock" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Stage Inventory Fact\SRC - BikeStores.Outputs[OLE DB Source Output].ExternalColumns[quantity_order]"
+                      dataType="i4"
+                      name="quantity_order" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Stage Inventory Fact\SRC - BikeStores.Outputs[OLE DB Source Output].ExternalColumns[store_id]"
+                      dataType="i4"
+                      name="store_id" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Stage Inventory Fact\SRC - BikeStores.Outputs[OLE DB Source Output].ExternalColumns[list_price]"
+                      dataType="numeric"
+                      name="list_price"
+                      precision="10"
+                      scale="2" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\DF - Stage Inventory Fact\SRC - BikeStores.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF - Stage Inventory Fact\SRC - BikeStores.Outputs[OLE DB Source Error Output].Columns[order_date]"
+                      dataType="dbDate"
+                      lineageId="Package\DF - Stage Inventory Fact\SRC - BikeStores.Outputs[OLE DB Source Error Output].Columns[order_date]"
+                      name="order_date" />
+                    <outputColumn
+                      refId="Package\DF - Stage Inventory Fact\SRC - BikeStores.Outputs[OLE DB Source Error Output].Columns[store_id]"
+                      dataType="i4"
+                      lineageId="Package\DF - Stage Inventory Fact\SRC - BikeStores.Outputs[OLE DB Source Error Output].Columns[store_id]"
+                      name="store_id" />
+                    <outputColumn
+                      refId="Package\DF - Stage Inventory Fact\SRC - BikeStores.Outputs[OLE DB Source Error Output].Columns[product_id]"
+                      dataType="i4"
+                      lineageId="Package\DF - Stage Inventory Fact\SRC - BikeStores.Outputs[OLE DB Source Error Output].Columns[product_id]"
+                      name="product_id" />
+                    <outputColumn
+                      refId="Package\DF - Stage Inventory Fact\SRC - BikeStores.Outputs[OLE DB Source Error Output].Columns[list_price]"
+                      dataType="numeric"
+                      lineageId="Package\DF - Stage Inventory Fact\SRC - BikeStores.Outputs[OLE DB Source Error Output].Columns[list_price]"
+                      name="list_price"
+                      precision="10"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\DF - Stage Inventory Fact\SRC - BikeStores.Outputs[OLE DB Source Error Output].Columns[quantity_stock]"
+                      dataType="i4"
+                      lineageId="Package\DF - Stage Inventory Fact\SRC - BikeStores.Outputs[OLE DB Source Error Output].Columns[quantity_stock]"
+                      name="quantity_stock" />
+                    <outputColumn
+                      refId="Package\DF - Stage Inventory Fact\SRC - BikeStores.Outputs[OLE DB Source Error Output].Columns[quantity_order]"
+                      dataType="i4"
+                      lineageId="Package\DF - Stage Inventory Fact\SRC - BikeStores.Outputs[OLE DB Source Error Output].Columns[quantity_order]"
+                      name="quantity_order" />
+                    <outputColumn
+                      refId="Package\DF - Stage Inventory Fact\SRC - BikeStores.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DF - Stage Inventory Fact\SRC - BikeStores.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DF - Stage Inventory Fact\SRC - BikeStores.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DF - Stage Inventory Fact\SRC - BikeStores.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\DF - Stage Inventory Fact.Paths[OLE DB Source Output]"
+              endId="Package\DF - Stage Inventory Fact\DST - Stage stgInventoryFact.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\DF - Stage Inventory Fact\SRC - BikeStores.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SQL - Truncate Stage Tables"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{4E447647-4820-4E31-A75A-31543B26D796}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQL - Truncate Stage Tables"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{E8A0A8BC-CE40-41EC-B09A-79FEA2F85A47}"
+          SQLTask:SqlStatementSource="truncate table stgInventoryFact;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{44CBAFFC-16EF-4820-8894-9A4AF90FE5B6}"
+      DTS:From="Package\SQL - Truncate Stage Tables"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\DF - Stage Inventory Fact" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{950835B5-CC8D-43B4-8C54-F46C660923CC}"
+      DTS:From="Package\DF - Stage Inventory Fact"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 3"
+      DTS:To="Package\DF - Load to InventoryFact" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="205.6,41.6"
+          Id="Package\DF - Load to InventoryFact"
+          TopLeft="247.642857658316,261.676470363686" />
+        <NodeLayout
+          Size="200,41.6"
+          Id="Package\DF - Stage Inventory Fact"
+          TopLeft="248.357143374122,169.911764561769" />
+        <NodeLayout
+          Size="213.6,41.6"
+          Id="Package\SQL - Truncate Stage Tables"
+          TopLeft="220.500000457678,51.3823529009589" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="327.300000457678,92.9823529009589">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="21.057142916444,76.9294116608104"
+              Start="0,0"
+              End="21.057142916444,69.4294116608104">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,34.4647058304052" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,34.4647058304052"
+                    Point2="0,38.4647058304052"
+                    Point3="4,38.4647058304052" />
+                  <mssgle:LineSegment
+                    End="17.057142916444,38.4647058304052" />
+                  <mssgle:CubicBezierSegment
+                    Point1="17.057142916444,38.4647058304052"
+                    Point2="21.057142916444,38.4647058304052"
+                    Point3="21.057142916444,42.4647058304052" />
+                  <mssgle:LineSegment
+                    End="21.057142916444,69.4294116608104" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="349.400000516219,211.511764561769">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,50.1647058019166"
+              Start="0,0"
+              End="0,42.6647058019166">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,42.6647058019166" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\DF - Load to InventoryFact">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="132.8,41.6"
+          Id="Package\DF - Load to InventoryFact\DimProduct"
+          TopLeft="593.499992132187,68.4999999552964" />
+        <NodeLayout
+          Size="122.4,41.6"
+          Id="Package\DF - Load to InventoryFact\DimStock"
+          TopLeft="775.499989867211,73.500000327826" />
+        <NodeLayout
+          Size="162.4,41.6"
+          Id="Package\DF - Load to InventoryFact\Derived Column 1"
+          TopLeft="752.999988779426,202.999996975064" />
+        <NodeLayout
+          Size="152.8,41.6"
+          Id="Package\DF - Load to InventoryFact\Derived Column"
+          TopLeft="392.499994680286,64.4999995678664" />
+        <NodeLayout
+          Size="126.4,41.6"
+          Id="Package\DF - Load to InventoryFact\Aggregate"
+          TopLeft="534.499993905425,203.499998837709" />
+        <NodeLayout
+          Size="187.2,41.6"
+          Id="Package\DF - Load to InventoryFact\SRC - stgInventoryFact"
+          TopLeft="134.49999807775,69.4999990463257" />
+        <NodeLayout
+          Size="212,41.6"
+          Id="Package\DF - Load to InventoryFact\DST - Load to InventoryFact"
+          TopLeft="184.499999567866,205.499999254942" />
+        <EdgeLayout
+          Id="Package\DF - Load to InventoryFact.Paths[OLE DB Source Output]"
+          TopLeft="321.69999807775,87.799999307096">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="70.7999966025358,0"
+              Start="0,0"
+              End="63.2999966025358,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="63.2999966025358,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DF - Load to InventoryFact.Paths[Lookup Match Output1]"
+          TopLeft="835.449989323318,115.100000327826">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,87.8999966472383"
+              Start="0,0"
+              End="0,80.3999966472383">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,80.3999966472383" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-48.19138671875,34.3953108236191,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DF - Load to InventoryFact.Paths[Lookup Match Output]"
+          TopLeft="726.299992132188,91.8000001415612">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="49.199997735023,0"
+              Start="0,0"
+              End="41.699997735023,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="41.699997735023,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-27.3413878512385,5,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DF - Load to InventoryFact.Paths[Derived Column Output1]"
+          TopLeft="752.999988779426,224.049997906387">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-92.0999948740007,0"
+              Start="0,0"
+              End="-84.5999948740007,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-84.5999948740007,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DF - Load to InventoryFact.Paths[Derived Column Output]"
+          TopLeft="545.299994680286,87.2999997615814">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="48.1999974519016,0"
+              Start="0,0"
+              End="40.6999974519016,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="40.6999974519016,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DF - Load to InventoryFact.Paths[Aggregate Output 1]"
+          TopLeft="534.499993905425,225.299999046326">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-137.999994337559,0"
+              Start="0,0"
+              End="-130.499994337559,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-130.499994337559,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\DF - Load to InventoryFact\DimProduct">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[DimProduct]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DF - Load to InventoryFact\DimStock">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[DimStock]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DF - Load to InventoryFact\SRC - stgInventoryFact">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DF - Load to InventoryFact\DST - Load to InventoryFact">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\DF - Stage Inventory Fact">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="156.8,41.6"
+          Id="Package\DF - Stage Inventory Fact\SRC - BikeStores"
+          TopLeft="456.499993279576,46.4999993890524" />
+        <NodeLayout
+          Size="217.6,41.6"
+          Id="Package\DF - Stage Inventory Fact\DST - Stage stgInventoryFact"
+          TopLeft="428.833327025175,151.833331152797" />
+        <EdgeLayout
+          Id="Package\DF - Stage Inventory Fact.Paths[OLE DB Source Output]"
+          TopLeft="536.266660152375,88.0999993890524">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,63.7333317637447"
+              Start="0,0"
+              End="0,56.2333317637447">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,56.2333317637447" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\DF - Stage Inventory Fact\DST - Stage stgInventoryFact">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DF - Stage Inventory Fact\SRC - BikeStores">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
