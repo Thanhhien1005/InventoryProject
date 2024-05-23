@@ -49,6 +49,19 @@ Câu hỏi: Số lượng các sản phẩm bán ra trong tháng/ quý/ năm.
 - Kết quả: Biểu đồ thể hiện top 10 sản phẩm có số lượng được bán ra nhiều nhất và được lọc theo danh mục sản phẩm và theo thời gian (Năm, quý, tháng, ngày).
 - Giải pháp: Sử dụng Power BI để kết nối và trực quan hóa dữ liệu từ cube SSAS, từ đó tạo biểu đồ và báo cáo hiển thị số lượng sản phẩm bán ra theo thời gian và danh mục sản phẩm.
 ![image](https://github.com/Thanhhien1005/InventoryProject/assets/170362430/77b5a31e-2d0e-4217-82c8-1c66de45a2d4)
+## Câu hỏi: Cho biết giá trị tồn kho của các sản phẩm trong từng cửa hàng theo tháng/ quý/ năm.
+
+### Sử dụng công cụ SSAS và Power BI:
+- **Kết quả**: Hiển thị giá trị tồn kho của các sản phẩm theo từng cửa hàng.
+- **Giải pháp**: Sử dụng SSAS để tạo cube phân tích dựa trên dữ liệu tồn kho, từ đó có thể truy vấn và hiển thị giá trị tồn kho của sản phẩm theo tháng, quý, hoặc năm. Sử dụng Power BI để kết nối và trực quan hóa dữ liệu từ cube SSAS, từ đó tạo biểu đồ và báo cáo hiển thị giá trị tồn kho của sản phẩm theo thời gian và cửa hàng.
+![image](https://github.com/Thanhhien1005/InventoryProject/assets/170362430/3713f2da-8db1-4287-8516-be3198d5b227)
+
+## Câu hỏi: Cho biết số lượng sản phẩm tồn kho theo từng cửa hàng trong tháng/ quý/ năm.
+
+### Sử dụng công cụ SSAS và Power BI:
+- **Kết quả**: Hiển thị số lượng tồn kho của sản phẩm theo từng loại sản phẩm.
+- **Giải pháp**: Sử dụng SSAS để tạo cube phân tích dựa trên dữ liệu tồn kho, từ đó có thể truy vấn và hiển thị số lượng tồn kho của sản phẩm theo tháng, quý, hoặc năm. Sử dụng Power BI để kết nối và trực quan hóa dữ liệu từ cube SSAS, từ đó tạo biểu đồ và báo cáo hiển thị số lượng tồn kho của sản phẩm theo thời gian và cửa hàng.
+![image](https://github.com/Thanhhien1005/InventoryProject/assets/170362430/ace56e12-b30a-4a65-ad75-3c8fe93b7926)
 
 
 
