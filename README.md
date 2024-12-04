@@ -31,7 +31,7 @@ Dự án này tập trung vào xây dựng một kho dữ liệu (Data Warehouse
 - Tệp Power BI (ssas.pbix)
 # Kết quả và Giải pháp cho Business Process
 
-Câu hỏi: Số lượng các sản phẩm bán ra trong tháng/ quý/ năm.
+## Câu hỏi: Số lượng các sản phẩm bán ra trong tháng/ quý/ năm.
 
 ### Sử dụng công cụ SSAS
 - Kết quả: Hiển thị số lượng các mặt hàng, sản phẩm bán được theo thời gian.
